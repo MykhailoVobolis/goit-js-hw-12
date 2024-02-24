@@ -23,19 +23,23 @@ const lightbox = new SimpleLightbox('.gallery a', {
 let pageNumber = 1;
 
 fetcImageForm.addEventListener('submit', fetchImage);
+btnLoad.addEventListener('click', getNextImages);
 
-async function fetchImage(event) {
+let searchQuery = '';
+
+function fetchImage(event) {
   event.preventDefault();
   list.innerHTML = '';
 
   btnLoad.classList.add('is-hidden');
   loader.classList.remove('is-hidden');
 
-  const searchQuery = event.target.elements.search.value.trim();
+  searchQuery = event.target.elements.search.value.trim();
 
   getPictures(searchQuery, pageNumber)
     .then(response => {
       if (!response.hits.length) {
+        btnLoad.classList.add('is-hidden');
         //  Повідомлення про відсутність зображення відповідно запиту / Ініціаналізація бібліотеки iziToast
         iziToast.error({
           message: `Sorry, there are no images matching your search query. Please try again!`,
@@ -49,16 +53,80 @@ async function fetchImage(event) {
           position: 'topRight',
           maxWidth: 432,
         });
+        return;
       }
 
       // Відображення галереї зображень відповідно запиту
       const markup = markupGallery(response.hits);
-
       list.insertAdjacentHTML('beforeend', markup);
 
       lightbox.refresh();
 
       event.target.reset();
+
+      btnLoad.classList.remove('is-hidden');
+    })
+    .catch(error => {
+      //   Повідомлення про тип помилки
+      iziToast.error({
+        message: `${error}`,
+        transitionIn: 'bounceInDown',
+        theme: 'dark',
+        messageColor: '#ffffff',
+        messageSize: 16,
+        messageLineHeight: 24,
+        color: '#ef4040',
+        progressBar: false,
+        position: 'topRight',
+        maxWidth: 432,
+      });
+      btnLoad.classList.add('is-hidden');
+    })
+
+    .finally(() => {
+      loader.classList.add('is-hidden');
+    });
+}
+
+// Функція по кліку на Load more «Завантажити ще»
+function getNextImages(event) {
+  btnLoad.classList.add('is-hidden');
+  loader.classList.remove('is-hidden');
+
+  pageNumber += 1;
+
+  getPictures(searchQuery, pageNumber)
+    .then(response => {
+      if (response.hits.length < 15) {
+        //  Повідомлення про відсутність зображення відповідно запиту / Ініціаналізація бібліотеки iziToast
+        iziToast.info({
+          message: `We're sorry, but you've reached the end of search results.`,
+          transitionIn: 'bounceInDown',
+          theme: 'dark',
+          messageColor: '#ffffff',
+          messageSize: 16,
+          messageLineHeight: 24,
+          color: '#0099FF',
+          progressBar: false,
+          position: 'topRight',
+          maxWidth: 432,
+        });
+
+        // Відображення галереї зображень відповідно запиту
+        const markup = markupGallery(response.hits);
+        list.insertAdjacentHTML('beforeend', markup);
+
+        lightbox.refresh();
+        btnLoad.classList.add('is-hidden');
+        return;
+      }
+
+      // Відображення галереї зображень відповідно запиту
+      const markup = markupGallery(response.hits);
+      list.insertAdjacentHTML('beforeend', markup);
+
+      lightbox.refresh();
+      btnLoad.classList.remove('is-hidden');
     })
     .catch(error => {
       //   Повідомлення про тип помилки
@@ -78,6 +146,5 @@ async function fetchImage(event) {
 
     .finally(() => {
       loader.classList.add('is-hidden');
-      btnLoad.classList.remove('is-hidden');
     });
 }

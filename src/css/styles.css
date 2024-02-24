@@ -29,7 +29,6 @@
   display: flex;
   gap: 8px;
   justify-content: center;
-  margin-bottom: 32px;
 }
 
 input {
@@ -84,6 +83,7 @@ button:hover {
   flex-wrap: wrap;
   gap: 24px;
   row-gap: 24px;
+  margin-top: 32px;
 }
 
 .gallery-item {
@@ -147,6 +147,7 @@ button:hover {
   position: relative;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  margin-top: 32px;
 }
 
 .loader::after {
