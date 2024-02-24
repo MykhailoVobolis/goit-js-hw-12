@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Запит до Pixabay API
-export async function getPictures(query, page) {
+export async function getPictures(query, perPage, pageNumber) {
   const API_KEY = '42417927-02b658e2f5610bf7e034ab0b0';
   const BASE_URL = 'https://pixabay.com/api/';
 
@@ -13,8 +13,8 @@ export async function getPictures(query, page) {
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
-      per_page: 15,
-      page: page,
+      per_page: perPage,
+      page: pageNumber,
     },
   });
   return response.data;
