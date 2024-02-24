@@ -11,6 +11,7 @@ import { getPictures } from './js/pixabay-api.js';
 const list = document.querySelector('.gallery');
 const fetcImageForm = document.querySelector('form');
 const loader = document.querySelector('.loader');
+const btnLoad = document.querySelector('.btn-load');
 
 //Ініціалізація бібліотеки SimpleLightbox та налаштування опций модального вікна
 const lightbox = new SimpleLightbox('.gallery a', {
@@ -19,17 +20,20 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
+let pageNumber = 1;
+
 fetcImageForm.addEventListener('submit', fetchImage);
 
-function fetchImage(event) {
+async function fetchImage(event) {
   event.preventDefault();
   list.innerHTML = '';
 
+  btnLoad.classList.add('is-hidden');
   loader.classList.remove('is-hidden');
 
   const searchQuery = event.target.elements.search.value.trim();
 
-  getPictures(searchQuery)
+  getPictures(searchQuery, pageNumber)
     .then(response => {
       if (!response.hits.length) {
         //  Повідомлення про відсутність зображення відповідно запиту / Ініціаналізація бібліотеки iziToast
@@ -46,10 +50,12 @@ function fetchImage(event) {
           maxWidth: 432,
         });
       }
+
       // Відображення галереї зображень відповідно запиту
       const markup = markupGallery(response.hits);
 
       list.insertAdjacentHTML('beforeend', markup);
+
       lightbox.refresh();
 
       event.target.reset();
@@ -72,5 +78,6 @@ function fetchImage(event) {
 
     .finally(() => {
       loader.classList.add('is-hidden');
+      btnLoad.classList.remove('is-hidden');
     });
 }

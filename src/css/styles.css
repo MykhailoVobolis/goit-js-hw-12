@@ -184,3 +184,8 @@ button:hover {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+[data-load] {
+  width: 125px;
+  margin-top: 32px;
+}
