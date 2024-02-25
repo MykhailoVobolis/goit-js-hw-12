@@ -12,6 +12,7 @@ const list = document.querySelector('.gallery');
 const fetcImageForm = document.querySelector('form');
 const loader = document.querySelector('.loader');
 const btnLoad = document.querySelector('.btn-load');
+const galleryCard = document.querySelector('.gallery');
 
 //Ініціалізація бібліотеки SimpleLightbox та налаштування опций модального вікна
 const lightbox = new SimpleLightbox('.gallery a', {
@@ -164,11 +165,8 @@ function getNextImages(event) {
 
 // Функція плавного скролу галереї
 function smoothGalleryScroll() {
-  //Отримуємо посилання на елемент галереї
-  const galleryCard = document.querySelector('.gallery-item');
   // Функція що повертає обє'єкт, з якого отримуємо значення висоти карточки
-  let cardHeight = galleryCard.getBoundingClientRect().height;
-
+  let cardHeight = galleryCard.firstElementChild.getBoundingClientRect().height;
   // Плавний скрол методом window.scrollBy
   window.scrollBy({
     top: cardHeight * 2,
