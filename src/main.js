@@ -82,9 +82,7 @@ function fetchImage(event) {
       // Відображення галереї зображень відповідно запиту
       const markup = markupGallery(response.hits);
       list.insertAdjacentHTML('beforeend', markup);
-
       lightbox.refresh();
-      event.target.reset();
     })
     .catch(error => {
       //   Повідомлення про тип помилки
@@ -100,11 +98,11 @@ function fetchImage(event) {
         position: 'topRight',
         maxWidth: 432,
       });
-      btnLoad.classList.add('is-hidden');
     })
 
     .finally(() => {
       loader.classList.add('is-hidden');
+      event.target.reset();
     });
 }
 
@@ -120,7 +118,6 @@ function getNextImages(event) {
       // Відображення галереї зображень відповідно запиту
       const markup = markupGallery(response.hits);
       list.insertAdjacentHTML('beforeend', markup);
-
       lightbox.refresh();
       btnLoad.classList.remove('is-hidden');
 
