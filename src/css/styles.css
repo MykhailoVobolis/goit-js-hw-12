@@ -44,7 +44,7 @@
 
 input {
   box-sizing: border-box;
-  width: 272px;
+  width: 252px;
   height: 40px;
   border: 1px solid #808080;
   border-radius: 4px;
@@ -70,7 +70,7 @@ input:focus {
 .btn-load {
   font-family: inherit;
   border: none;
-  width: 91px;
+  width: 100px;
   height: 40px;
   border-radius: 8px;
   color: #ffffff;
@@ -78,7 +78,6 @@ input:focus {
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.64px;
-  margin-left: 4px;
   text-transform: uppercase;
   background-image: linear-gradient(
     to right,
@@ -182,7 +181,7 @@ input:focus {
   height: 40px;
   border-radius: 50%;
   border: 3px solid;
-  border-color: #ff3d00 transparent;
+  border-color: #4830f0 transparent;
 }
 
 @keyframes rotation {
@@ -208,7 +207,7 @@ input:focus {
 }
 
 .btn-load {
-  width: 125px;
+  width: 140px;
   display: block;
   margin-left: auto;
   margin-right: auto;
