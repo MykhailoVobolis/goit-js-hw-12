@@ -182,7 +182,7 @@ function smoothGalleryScroll() {
   let cardHeight = galleryCard.firstElementChild.getBoundingClientRect().height;
   // Плавний скрол методом window.scrollBy
   window.scrollBy({
-    top: cardHeight * 2,
+    top: cardHeight * 3,
     left: 0,
     behavior: 'smooth',
   });
