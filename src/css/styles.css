@@ -21,8 +21,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 20px;
+  padding-bottom: 24px;
 }
 
 .container {
@@ -63,7 +63,7 @@ input:hover {
 }
 
 input:focus {
-  border-color: #4e75ff;
+  border-color: #4830f0;
 }
 
 .btn-search,
@@ -73,19 +73,27 @@ input:focus {
   width: 91px;
   height: 40px;
   border-radius: 8px;
-  background-color: #4e75ff;
   color: #ffffff;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: 0.64px;
   margin-left: 4px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    to right,
+    #9eefe1 0%,
+    #4830f0 51%,
+    #9eefe1 100%
+  );
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
 }
 
 .btn-search:hover,
 .btn-load:hover {
-  background-color: #6c8cff;
+  background-position: right center;
 }
 
 .gallery {
