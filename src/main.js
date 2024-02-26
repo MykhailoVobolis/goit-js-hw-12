@@ -35,9 +35,27 @@ async function fetchImage(event) {
   pageNumber = 1;
 
   btnLoad.classList.add('is-hidden');
-  loader.classList.remove('is-hidden');
 
   searchQuery = event.target.elements.search.value.trim();
+
+  // Запит не повинен відправлятися при порожньому рядку введення
+  if (searchQuery === '') {
+    iziToast.warning({
+      message: `The search query cannot be empty`,
+      transitionIn: 'bounceInDown',
+      theme: 'dark',
+      messageColor: '#ffffff',
+      messageSize: 16,
+      messageLineHeight: 24,
+      color: '#FFA07A',
+      progressBar: false,
+      position: 'topRight',
+      maxWidth: 432,
+    });
+    return;
+  }
+
+  loader.classList.remove('is-hidden');
 
   try {
     const data = await getPictures(searchQuery, perPage, pageNumber);

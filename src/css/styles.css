@@ -21,8 +21,18 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  margin: 16px;
-  max-width: 1440px;
+  padding-top: 16px;
+}
+
+.container {
+  max-width: 425px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .input-search-form {
@@ -43,10 +53,16 @@ input {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.64px;
+  outline: transparent;
+  outline-offset: 4px;
 }
 
 input:hover {
-  border: 1px solid #000000;
+  border-color: #000000;
+}
+
+input:focus {
+  border-color: #4e75ff;
 }
 
 button {
@@ -62,28 +78,20 @@ button {
   line-height: 1.5;
   letter-spacing: 0.64px;
   margin-left: 4px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
 }
 
 button:hover {
   background-color: #6c8cff;
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1128px;
-  margin: 0 auto;
-}
-
 .gallery {
   list-style-type: none;
   padding-left: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 24px;
-  row-gap: 24px;
-  margin-top: 32px;
+  align-items: center;
 }
 
 .gallery-item {
@@ -147,7 +155,9 @@ button:hover {
   position: relative;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
-  margin-top: 32px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loader::after {
@@ -188,5 +198,27 @@ button:hover {
 
 [data-load] {
   width: 125px;
-  margin-top: 32px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TABLET STYLES */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 744px;
+  }
+
+  .gallery {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+  }
+}
+
+/* DESKTOP STYLES */
+@media screen and (min-width: 1168px) {
+  .container {
+    max-width: 1128px;
+  }
 }
