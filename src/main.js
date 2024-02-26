@@ -47,7 +47,7 @@ async function fetchImage(event) {
       messageColor: '#ffffff',
       messageSize: 16,
       messageLineHeight: 24,
-      color: '#FFA07A',
+      color: '#FF8C00',
       progressBar: false,
       position: 'topRight',
       maxWidth: 432,
