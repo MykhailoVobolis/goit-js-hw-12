@@ -187,3 +187,12 @@ function smoothGalleryScroll() {
     behavior: 'smooth',
   });
 }
+
+// Скидання дії за дефолтом при натисканні Esc / в Safari за дефолтом Esc переводить браузер з повноекронного у віконний режим
+document.addEventListener('keydown', pressKeyEsc);
+function pressKeyEsc(event) {
+  if (event.code !== 'Escape') {
+    return; // користувач клікнув не на Esc
+  }
+  event.preventDefault();
+}
